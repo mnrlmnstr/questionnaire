@@ -27,47 +27,38 @@ const Questionnaire: React.FC = () => {
   };
 
   const renderQuestions = () => {
+    const questionKeys = [
+      "question_1",
+      "question_2",
+      "question_3",
+      "question_4"
+    ];
+    let renderedQuestions: Question[] = [];
+
     if (currentQuestion.question) {
-      return (
-        <div>
-          <h2 className="text-xl font-bold">{currentQuestion.question}</h2>
-          <div className="flex mt-3 flex-row-reverse justify-end">
-            {Object.entries(currentQuestion.answers).map(([key, value]) => (
-              <button className="btn mr-1" key={key} onClick={() => handleAnswer(value)}>{key}</button>
-            ))}
-          </div>
-        </div>
-      );
-    } else {
-      const questionKeys = [
-        "question_1",
-        "question_2",
-        "question_3",
-        "question_4"
-      ];
-      let renderedQuestions: Question[] = [];
-
-      questionKeys.forEach((key) => {
-        if (currentQuestion[key]) {
-          renderedQuestions.push(currentQuestion[key]);
-        }
-      });
-
-      return (
-        <div>
-          {renderedQuestions.map((question, index) => (
-            <div className="mb-4" key={index}>
-              <h2 className="text-xl font-bold">{question.question}</h2>
-              <div className="flex mt-3 flex-row-reverse justify-end">
-                {Object.entries(question.answers).map(([key, value]) => (
-                  <button className="btn mr-1" key={key} onClick={() => handleAnswer(value)}>{key}</button>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      );
+      renderedQuestions.push(currentQuestion) 
     }
+
+    questionKeys.forEach((key) => {
+      if (currentQuestion[key]) {
+        renderedQuestions.push(currentQuestion[key]);
+      }
+    });
+
+    return (
+      <div>
+        {renderedQuestions.map((question, index) => (
+          <div className="mb-4" key={index}>
+            <h2 className="text-xl font-bold">{question.question}</h2>
+            <div className="flex mt-3 flex-row-reverse justify-end">
+              {Object.entries(question.answers).map(([key, value]) => (
+                <button className="btn mr-1" key={key} onClick={() => handleAnswer(value)}>{key}</button>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    );
   };
 
   return (
