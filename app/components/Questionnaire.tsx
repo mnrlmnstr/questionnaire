@@ -66,9 +66,9 @@ const Questionnaire: React.FC = () => {
 
   const renderHistory = (): JSX.Element => {
     return (
-      <div className="mt-4">
+      <div className="mt-4 text-gray-400">
         <h2>History</h2>
-        <ol className="list-decimal">
+        <ol className="list-decimal ml-4">
           {history.map((question, index) => (
             <li key={index}>
               <h3>{
